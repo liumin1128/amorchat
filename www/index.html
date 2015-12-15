@@ -6,15 +6,17 @@
         <meta name="author" content="Wayou">
         <meta name="description" content="hichat | a simple chat application built with node.js and websocket">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>hichat</title>
+        <title>聊天室</title>
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon.ico" type="image/x-icon">
     </head>
     <body>
-        <div class="wrapper">
-            <div class="banner">
-                <h1>HiChat :)</h1>
+        <div class="wrapper" id="banner" >
+            <div class="banner" >
+                <h1>ChatOnline 聊天室 <span id="author">by alliswell</span></h1>
+
                 <span id="status"></span>
             </div>
             <div id="historyMsg">
@@ -22,39 +24,42 @@
             <div class="controls" >
                 <div class="items">
                     <input id="colorStyle" type="color" placeHolder='#000' title="font color" />
-                    <input id="emoji" type="button" value="emoji" title="emoji" />
+                    <input id="emoji" type="button" class="btn btn-default btn-sm" value="表情" title="emoji" />
                     <label for="sendImage" class="imageLable">
-                        <input type="button" value="image"  />
                         <input id="sendImage" type="file" value="image"/>
+
+                        <input type="button" class="btn btn-default btn-sm" value="图片"  />
                     </label>
-                    <input id="clearBtn" type="button" value="clear" title="clear screen" />
+                    <input id="clearBtn" class="btn btn-default btn-sm" type="button" value="清空" title="clear screen" />
                 </div>
-                <textarea id="messageInput" placeHolder="enter to send"></textarea>
-                <input id="sendBtn" type="button" value="SEND">
+                <textarea id="messageInput" placeHolder="请输入"></textarea>
+                <input id="sendBtn" type="button" class="btn btn-success" value="SEND">
                 <div id="emojiWrapper">
                 </div>
             </div>
         </div>
         <div id="loginWrapper">
-            <p id="info">connecting to server...</p>
+            <p id="info">正在连接服务器...</p>
             <div id="nickWrapper">
                 <input type="text" placeHolder="nickname" id="nicknameInput" />
                 <input type="button" value="OK" id="loginBtn" />
             </div>
         </div>
-        <footer>
+        <!-- <footer>
             <small>view on <a href="https://github.com/Wayou/HiChat">GitHub</a> | <a href="mailto:liuwayong@gmail.com">contact me</a></small>
-        </footer>
+        </footer> -->
         <script src="/socket.io/socket.io.js"></script>
         <script src="scripts/hichat.js"></script>
         <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+       
+            
+  // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  // m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  // })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-46794744-7', 'hichat.herokuapp.com');
-  ga('send', 'pageview');
+  // ga('create', 'UA-46794744-7', 'hichat.herokuapp.com');
+  // ga('send', 'pageview');
 
 </script>
     </body>

@@ -1,10 +1,4 @@
-/*
- *hichat v0.4.2
- *Wayou Mar 28,2014
- *MIT license
- *view on GitHub:https://github.com/wayou/HiChat
- *see it in action:http://hichat.herokuapp.com/
- */
+
 window.onload = function() {
     var hichat = new HiChat();
     hichat.init();
@@ -17,14 +11,15 @@ HiChat.prototype = {
         var that = this;
         this.socket = io.connect();
         this.socket.on('connect', function() {
-            document.getElementById('info').textContent = 'get yourself a nickname :)';
+            document.getElementById('info').textContent = '输入一个ID以加入聊天室 :)';
             document.getElementById('nickWrapper').style.display = 'block';
             document.getElementById('nicknameInput').focus();
         });
         this.socket.on('nickExisted', function() {
-            document.getElementById('info').textContent = '!nickname is taken, choose another pls';
+            document.getElementById('info').textContent = 'ID已被使用，请更换！！！';
         });
         this.socket.on('loginSuccess', function() {
+            aaaaaaaaa();
             document.title = 'hichat | ' + document.getElementById('nicknameInput').value;
             document.getElementById('loginWrapper').style.display = 'none';
             document.getElementById('messageInput').focus();
@@ -37,9 +32,10 @@ HiChat.prototype = {
             }
         });
         this.socket.on('system', function(nickName, userCount, type) {
-            var msg = nickName + (type == 'login' ? ' joined' : ' left');
-            that._displayNewMsg('system ', msg, 'red');
-            document.getElementById('status').textContent = userCount + (userCount > 1 ? ' users' : ' user') + ' online';
+            var msg = nickName + (type == 'login' ? ' 加入' : ' 离开');
+            that._displayNewMsg('system ', msg, 'rgba(255,0,0,0.5)');
+            // document.getElementById('status').textContent = userCount + (userCount > 1 ? ' users' : ' user') + ' online';
+            document.getElementById('status').textContent = "当前"+ userCount + "人在线";
         });
         this.socket.on('newMsg', function(user, msg, color) {
             that._displayNewMsg(user, msg, color);
@@ -145,7 +141,17 @@ HiChat.prototype = {
             //determine whether the msg contains emoji
             msg = this._showEmoji(msg);
         msgToDisplay.style.color = color || '#000';
-        msgToDisplay.innerHTML = user + '<span class="timespan">(' + date + '): </span>' + msg;
+        if(user=="me"){
+            msgToDisplay.setAttribute("class","msgToDisplayRight");
+        }else{
+            if(user=="system "){
+                msgToDisplay.setAttribute("class","msgToDisplaySystem");
+
+            }else{
+                msgToDisplay.setAttribute("class","msgToDisplayLeft");
+            }
+        }
+        msgToDisplay.innerHTML = '<div>'+user+'</div>' + '<span class="timespan">' + date + ' </span>' + '<p>'+msg+'</p>';
         container.appendChild(msgToDisplay);
         container.scrollTop = container.scrollHeight;
     },
@@ -154,7 +160,7 @@ HiChat.prototype = {
             msgToDisplay = document.createElement('p'),
             date = new Date().toTimeString().substr(0, 8);
         msgToDisplay.style.color = color || '#000';
-        msgToDisplay.innerHTML = user + '<span class="timespan">(' + date + '): </span> <br/>' + '<a href="' + imgData + '" target="_blank"><img src="' + imgData + '"/></a>';
+        msgToDisplay.innerHTML = user + '<span class="timespan">' + date + '</span> <br/>' + '<a href="' + imgData + '" target="_blank"><img src="' + imgData + '"/></a>';
         container.appendChild(msgToDisplay);
         container.scrollTop = container.scrollHeight;
     },
@@ -174,3 +180,15 @@ HiChat.prototype = {
         return result;
     }
 };
+        function aaaaaaaaa( )
+        {　
+            var r = Math.floor(Math.random()*125);
+            var g = Math.floor(Math.random()*125);
+            var b = Math.floor(Math.random()*125);
+            var r2 = Math.floor(Math.random()*125+125);
+            var g2 = Math.floor(Math.random()*125+125);
+            var b2 = Math.floor(Math.random()*125+125);
+            document.body.style.background = "rgb("+r2+","+g2+","+b2+")";
+            document.getElementById("banner").style.background = "rgb("+r+","+g+","+b+")";
+　           setTimeout("aaaaaaaaa()", 10000);
+        }
