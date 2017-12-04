@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "name": "chat",
+      "script": "index.js",
+      "watch": "../",
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "env": {
+        "NODE_ENV": "production",
+        "NODE_PORT": 3103
+      }
+    }
+  ]
+}
