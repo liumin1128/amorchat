@@ -1,5 +1,8 @@
 {
     "name": "hichat",
+    "scripts": {
+        "pm2": "pm2 start ./process.json"
+    },
     "description": "a realtime chat web application",
     "version": "0.4.0",
     "main": "server.js",
